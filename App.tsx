@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Search, Menu, User, ChevronRight, Star, ShieldCheck, Truck, ArrowRight, MessageCircle, X, Trash2, CheckCircle, Plane, Package } from 'lucide-react';
 
-// --- DADOS DOS PRODUTOS (EMBUTIDOS PARA NÃO DAR ERRO) ---
+// --- DADOS DOS PRODUTOS (EMBUTIDOS) ---
 const products = [
   {
     id: 1,
@@ -78,8 +78,6 @@ export default function App() {
   const [view, setView] = useState('home'); 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [storage, setStorage] = useState('128GB');
-  
-  // Estado para simular login
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -293,3 +291,73 @@ export default function App() {
     <div className="pt-24 pb-12 max-w-4xl mx-auto px-4 text-center">
       <h2 className="text-3xl font-bold mb-4">Checkout de Demonstração</h2>
       <p className="text-gray-500 mb-8">Nesta versão demo, o pagamento é apenas simulado.</p>
+      <div className="bg-white p-8 rounded-2xl shadow-sm border max-w-md mx-auto">
+        <div className="flex justify-between mb-4 text-lg font-bold">
+           <span>Total a pagar:</span>
+           <span>R$ {cartTotal.toLocaleString('pt-BR')}</span>
+        </div>
+        <button 
+          onClick={() => { setCart([]); setView('dashboard'); alert('Compra realizada com sucesso! Acompanhe na área do cliente.'); }}
+          className="w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700"
+        >
+          Confirmar "Pagamento"
+        </button>
+        <button onClick={() => setIsCartOpen(true)} className="mt-4 text-sm text-gray-500 underline">Voltar ao carrinho</button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
+      <Navbar />
+      
+      {isCartOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setIsCartOpen(false)}></div>
+          <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col p-6 animate-slide-in">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold">Seu Carrinho ({cart.length})</h2>
+              <button onClick={() => setIsCartOpen(false)}><X className="w-6 h-6" /></button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto space-y-6">
+              {cart.map((item, index) => (
+                <div key={index} className="flex gap-4 items-center">
+                  <div className="w-20 h-20 bg-gray-50 rounded-lg flex-shrink-0 flex items-center justify-center">
+                    <img src={item.image} className="w-16 h-16 object-contain mix-blend-multiply" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-sm">{item.name}</h4>
+                    <p className="text-xs text-gray-500">{item.storageOption}</p>
+                    <p className="font-bold mt-1">R$ {item.price.toLocaleString('pt-BR')}</p>
+                  </div>
+                  <button onClick={() => removeFromCart(index)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-5 h-5" /></button>
+                </div>
+              ))}
+              {cart.length === 0 && <p className="text-center text-gray-400 mt-10">Seu carrinho está vazio.</p>}
+            </div>
+
+            <div className="border-t pt-6 mt-6">
+               <div className="flex justify-between text-xl font-bold mb-6">
+                 <span>Total</span>
+                 <span>R$ {cartTotal.toLocaleString('pt-BR')}</span>
+               </div>
+               <button 
+                 onClick={() => { setIsCartOpen(false); setView('checkout'); }}
+                 className="w-full bg-black text-white py-4 rounded-xl font-bold hover:bg-gray-800 disabled:opacity-50"
+                 disabled={cart.length === 0}
+               >
+                 Finalizar Compra
+               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {view === 'home' && <Home />}
+      {view === 'product' && <ProductDetail />}
+      {view === 'dashboard' && <Dashboard />}
+      {view === 'checkout' && <Checkout />}
+    </div>
+  );
+}

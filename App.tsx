@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext, useRef } from 'r
 import { ShoppingBag, Search, Menu, User, X, ChevronRight, Star, ShieldCheck, Truck, ArrowRight, MessageCircle, MapPin, Calendar, DollarSign, Package, CheckCircle, ArrowLeft, Info, Trash2, Plus, Minus, CreditCard, QrCode, Copy, Check, Smartphone, Mail, Loader2, Plane, Box, LogOut } from 'lucide-react';
 import { Product, CartItem, Order, UserProfile, PageView } from './types';
 import { PRODUCTS, MOCK_USER, MOCK_ORDERS } from './constants';
-import { GeminiService } from './geminiService';
+import { GeminiService } from './services/geminiService';
 
 // --- Context Definitions ---
 interface AppContextType {
@@ -364,28 +364,29 @@ const ProductDetails = () => {
     : 0;
 
   return (
-    <div className="bg-white min-h-screen pt-10 pb-20 animate-fade-in">
+    <div className="bg-white min-h-screen pt-4 pb-20 animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <button 
           onClick={() => navigateTo('home')} 
-          className="mb-8 flex items-center text-gray-500 hover:text-[#0071e3] transition-colors"
+          className="mb-6 flex items-center text-gray-500 hover:text-[#0071e3] transition-colors"
         >
           <ArrowLeft size={20} className="mr-2" />
           Voltar para vitrine
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-20">
           {/* Left Column: Image */}
-          <div className="bg-[#f5f5f7] rounded-3xl p-10 flex items-center justify-center h-[500px] sticky top-24">
+          {/* Adjusted for mobile: flex-col layout, removed sticky on mobile, better height control */}
+          <div className="bg-[#f5f5f7] rounded-3xl p-6 md:p-10 flex items-center justify-center w-full aspect-square md:aspect-auto md:h-[500px] lg:sticky lg:top-24">
              <img 
                src={selectedProduct.image} 
                alt={selectedProduct.name} 
-               className="max-h-full max-w-full object-contain mix-blend-multiply drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+               className="w-full h-full object-contain mix-blend-multiply drop-shadow-2xl hover:scale-105 transition-transform duration-500"
              />
           </div>
 
           {/* Right Column: Info */}
-          <div>
+          <div className="flex flex-col">
             <div className="mb-6">
               <span className="text-[#0071e3] font-semibold text-sm tracking-wider uppercase mb-2 block">
                 {selectedProduct.category}

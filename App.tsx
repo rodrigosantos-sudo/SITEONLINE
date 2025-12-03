@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext, useRef } from 'r
 import { ShoppingBag, Search, Menu, User, X, ChevronRight, Star, ShieldCheck, Truck, ArrowRight, MessageCircle, MapPin, Calendar, DollarSign, Package, CheckCircle, ArrowLeft, Info, Trash2, Plus, Minus, CreditCard, QrCode, Copy, Check, Smartphone, Mail, Loader2, Plane, Box, LogOut } from 'lucide-react';
 import { Product, CartItem, Order, UserProfile, PageView } from './types';
 import { PRODUCTS, MOCK_USER, MOCK_ORDERS } from './constants';
-import { GeminiService } from './geminiService';
+import { Service } from './Service';
 
 // --- Context Definitions ---
 interface AppContextType {
@@ -34,7 +34,7 @@ export const useAppContext = () => {
 };
 
 // --- Services ---
-const geminiService = new GeminiService();
+const Service = new Service();
 
 // --- Components (UI) ---
 

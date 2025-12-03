@@ -1,6 +1,7 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://kdazrscugoninpyrmnsm.supabase.co'
-const supabaseKey = 'sb_publishable_DKIGoum1-9c4f2Iqj1h3jA_ve8p2fOe'
+// Substitua estas strings pelas suas credenciais reais do painel do Supabase
+const supabaseUrl = process.env.VITE_SUPABASE_URL || 'SUA_URL_DO_SUPABASE_AQUI';
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || 'SUA_CHAVE_ANON_AQUI';
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(supabaseUrl, supabaseKey);

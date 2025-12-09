@@ -1,7 +1,8 @@
 import { Product, UserProfile, Order } from './types';
 
-// Lista atualizada com lógica de Preços por Armazenamento
+// Lista atualizada com lógica de Preços por Armazenamento e Acessórios (Dropchip)
 export const PRODUCTS: Product[] = [
+  // --- IPHONES ---
   // iPhone 13
   {
     id: 'iphone-13',
@@ -122,6 +123,70 @@ export const PRODUCTS: Product[] = [
       { capacity: '256GB', price: 8199.00, marketPrice: 12499.00 },
       { capacity: '512GB', price: 9699.00, marketPrice: 15499.00 },
       { capacity: '1TB', price: 10699.00, marketPrice: 17499.00 },
+    ]
+  },
+
+  // --- ACESSÓRIOS & CASES (Dropchip AllCell) ---
+  {
+    id: 'case-clear-magsafe',
+    name: "Capa Transparente MagSafe",
+    category: "Acessórios",
+    price: 149.00,
+    marketPrice: 349.00,
+    image: 'https://images.unsplash.com/photo-1603313011101-320f26a4f6f6?q=80&w=500&auto=format&fit=crop',
+    description: "Proteção cristalina que não amarela. Compatível com carregamento MagSafe. Design fino e leve.",
+    rating: 4.7,
+    inStock: true,
+    storageOptions: [
+      { capacity: 'iPhone 13', price: 149.00, marketPrice: 349.00 },
+      { capacity: 'iPhone 14', price: 149.00, marketPrice: 349.00 },
+      { capacity: 'iPhone 15', price: 159.00, marketPrice: 359.00 },
+      { capacity: 'iPhone 15 Pro Max', price: 169.00, marketPrice: 369.00 },
+    ]
+  },
+  {
+    id: 'case-silicone-premium',
+    name: "Capa Silicone Premium",
+    category: "Acessórios",
+    price: 129.00,
+    marketPrice: 299.00,
+    image: 'https://images.unsplash.com/photo-1618386470397-9e73b224c3a7?q=80&w=500&auto=format&fit=crop',
+    description: "Toque suave e aveludado. Interior em microfibra para proteger seu iPhone. Cores exclusivas.",
+    rating: 4.9,
+    inStock: true,
+    storageOptions: [
+      { capacity: 'iPhone 11', price: 129.00, marketPrice: 299.00 },
+      { capacity: 'iPhone 12/12 Pro', price: 129.00, marketPrice: 299.00 },
+      { capacity: 'iPhone 13', price: 129.00, marketPrice: 299.00 },
+      { capacity: 'iPhone 14/15', price: 139.00, marketPrice: 319.00 },
+    ]
+  },
+  {
+    id: 'wallet-magsafe',
+    name: "Carteira de Couro MagSafe",
+    category: "Acessórios",
+    price: 199.00,
+    marketPrice: 459.00,
+    image: 'https://images.unsplash.com/photo-1623941002283-66270b263b64?q=80&w=500&auto=format&fit=crop',
+    description: "O jeito perfeito de ter seus cartões sempre à mão. Fixação magnética forte e segura.",
+    rating: 4.6,
+    inStock: true,
+    storageOptions: [
+      { capacity: 'Universal', price: 199.00, marketPrice: 459.00 }
+    ]
+  },
+  {
+    id: 'airpods-pro-2',
+    name: "AirPods Pro (2ª Geração)",
+    category: "Acessórios",
+    price: 1299.00,
+    marketPrice: 1899.00,
+    image: "https://images.unsplash.com/photo-1603351154351-5cf13e883efb?q=80&w=500&auto=format&fit=crop",
+    description: "Cancelamento de ruído ativo 2x melhor. Áudio espacial personalizado e estojo MagSafe USB-C.",
+    rating: 4.8,
+    inStock: true,
+    storageOptions: [
+      { capacity: 'USB-C', price: 1299.00, marketPrice: 1899.00 }
     ]
   }
 ];
